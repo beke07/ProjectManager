@@ -12,17 +12,3 @@ C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Bll\bin\Debug\net
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Dal.pdb
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.csproj.CopyComplete
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Bll.deps.json
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Bll.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Bll.pdb
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Dal.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Models.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Dal.pdb
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.csprojResolveAssemblyReference.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.csproj.CoreCompileInputs.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.AssemblyInfoInputs.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.AssemblyInfo.cs
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.csproj.CopyComplete
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Bll\obj\Debug\netcoreapp2.0\ProjectManager.Bll.pdb

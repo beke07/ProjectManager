@@ -16,12 +16,3 @@ C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Models\obj\Debug\
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.deps.json
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.dll
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.deps.json
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.csprojResolveAssemblyReference.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.csproj.CoreCompileInputs.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.AssemblyInfoInputs.cache
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.AssemblyInfo.cs
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.dll
-C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Models\obj\Debug\netcoreapp2.0\ProjectManager.Models.pdb
