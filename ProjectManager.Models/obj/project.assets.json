@@ -3741,11 +3741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Beke\\Downloads\\Projects\\ProjectManager\\ProjectManager.Models\\ProjectManager.Models.csproj",
+      "projectUniqueName": "C:\\Users\\Beke\\Desktop\\ProjectManager\\ProjectManager.Models\\ProjectManager.Models.csproj",
       "projectName": "ProjectManager.Models",
-      "projectPath": "C:\\Users\\Beke\\Downloads\\Projects\\ProjectManager\\ProjectManager.Models\\ProjectManager.Models.csproj",
+      "projectPath": "C:\\Users\\Beke\\Desktop\\ProjectManager\\ProjectManager.Models\\ProjectManager.Models.csproj",
       "packagesPath": "C:\\Users\\Beke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Beke\\Downloads\\Projects\\ProjectManager\\ProjectManager.Models\\obj\\",
+      "outputPath": "C:\\Users\\Beke\\Desktop\\ProjectManager\\ProjectManager.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

@@ -10,3 +10,15 @@ C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Dal\obj\Debug\net
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Models.dll
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
 C:\Users\Beke\Downloads\Projects\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.csproj.CopyComplete
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Dal.deps.json
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Dal.dll
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Dal.pdb
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Models.dll
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\bin\Debug\netcoreapp2.0\ProjectManager.Models.pdb
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.csprojResolveAssemblyReference.cache
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.csproj.CoreCompileInputs.cache
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.AssemblyInfoInputs.cache
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.AssemblyInfo.cs
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.csproj.CopyComplete
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.dll
+C:\Users\Beke\Desktop\ProjectManager\ProjectManager.Dal\obj\Debug\netcoreapp2.0\ProjectManager.Dal.pdb
