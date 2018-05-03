@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Raleway', sans-serif !important;
+  background-color: #d7cec7 !important;
+}
+
+h1 {
+  margin-top: 10px !important;
+}
+
+.white-card-design {
+  background-color: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+  -moz-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+  box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+}
+
+.closed-button:focus,
+.closed-button:active {
+  outline: 0 !important;
+  text-decoration: none !important;
+}
+
+.closed-button {
+  color: #565656 !important;
+}
+
+.closed-button:hover {
+  background-color: #eee !important;
+  text-decoration: none !important;
+}
+
+.opened-button {
+  background-color: #c09f80 !important;
+  color: white !important;
+}
+
+.opened-button:hover,
+.opened-button:active,
+.opened-button:focus {
+    background-color: #c09f80 !important;
+    color: white !important;
+    outline: 0 !important;
+    text-decoration: none !important;
+}
+
+.opened-button i,
+.closed-button i {
+  pointer-events: none;
+}
+
+.delete-button i,
+.ok-button i,
+.cancel-button i,
+.edit-button i{
+  pointer-events: none;
+  margin-left: 0 !important;
+  color: #565656 !important;
+}
+.ok-button:hover,
+.ok-button:active,
+.ok-button:focus,
+.cancel-button:hover,
+.cancel-button:active,
+.cancel-button:focus,
+.delete-button:hover,
+.delete-button:active,
+.delete-button:focus,
+.edit-button:hover,
+.edit-button:active,
+.edit-button:focus {
+  background-color: #eee !important;
+  outline: 0 !important;
+  text-decoration: none !important;
+}
+
+.delete-button:hover i {
+   color: #d9534f !important;
+}
+
+.edit-button:hover i {
+  color: #428bca !important;
+}
+
+.ok-button:hover i {
+  color: #5cb85c !important;
+}
+
+.cancel-button:hover i {
+  color: #d9534f !important;
+}
+
+.visible{
+  display: block !important;
+}
+
+.not-visible{
+  display: none !important;
+}
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus {
+  border: none;
+  outline: none;
+}

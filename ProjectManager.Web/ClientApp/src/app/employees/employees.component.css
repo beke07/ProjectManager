@@ -1,0 +1,50 @@
+.employee-wrapper {
+  margin-top: 25px;
+  margin-right: 10px;
+  padding: 15px 0;
+  width: 75%;
+  margin-bottom: 25px;
+}
+
+.employee-wrapper h1 {
+  padding-left: 15px;
+}
+
+.card-header {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+  .card-header button {
+    border-radius: 3px;
+  }
+
+.card-body h4:first-child,
+.card-body h5:first-child {
+  margin-top: 0;
+}
+
+.card-body h4 {
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.card-body h4,
+.card-body h5 {
+  display: inline-block;
+}
+
+.card-body {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.card-body-grey {
+  background-color: #eee;
+}
+
+.card-header .glyphicon {
+  margin-left: 5px;
+}

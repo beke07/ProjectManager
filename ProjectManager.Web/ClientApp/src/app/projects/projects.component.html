@@ -1,0 +1,106 @@
+<app-new-project></app-new-project>
+
+<div id="project-wrapper" class="row white-card-design project-wrapper">
+  <h1>Projects</h1>
+  <p *ngIf="!projectService.projects"><em style="margin-left: 25px;">Loading...</em></p>
+
+  <div id="accordion" *ngFor="let item of projectService.projects">
+    <div class="card">
+      <div class="card-header" id="Heading{{item.id}}">
+        <h5 class="mb-0" id="{{item.id}}">
+          <button id="collapse-button" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
+            {{item.name}}<i class='glyphicon glyphicon-menu-down'></i>
+          </button>
+          <button id="{{item.id}}"
+                  [ngClass]="['delete-button', 'pull-right', 'btn', 'btn-link']"
+                  (click)="setElementToDelete($event)"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="top"
+                  (confirm)="deleteCard()">
+            <i id="{{item.id}}" class='glyphicon glyphicon-trash'></i>
+          </button>
+          <button id="edit-button" [ngClass]="['visible','edit-button', 'pull-right', 'btn', 'btn-link']" (click)="editCard($event)">
+            <i class='glyphicon glyphicon-pencil'></i>
+          </button>
+          <button id="cancel-button" (click)="discardChanges($event)" [ngClass]="['not-visible','cancel-button', 'pull-right', 'btn', 'btn-link']">
+            <i class='glyphicon glyphicon-remove'></i>
+          </button>
+          <button id="ok-button" (click)="saveChanges($event)"  [ngClass]="['not-visible','ok-button', 'pull-right', 'btn', 'btn-link']">
+            <i class='glyphicon glyphicon-ok'></i>
+          </button>
+        </h5>
+      </div>
+
+      <div id="Collapse{{item.id}}" class="collapse" attr.aria-labelledby="Heading{{item.id}}" attr.data-parent="#accordion">
+        <div class="card-body card-body-grey" id="{{item.id}}" (click)="setProjectToEdit($event)">
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Name: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #name name="input-field" (blur)="item.name=name.innerText">{{item.name}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Company: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #company name="input-field" (blur)="item.company=company.innerText">{{item.company}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Risk: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #risk name="input-field" (blur)="item.risk=risk.innerText">{{item.risk}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Start: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>End: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText" >{{item.dueDate}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Weeks: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #numberOfWeeks name="input-field" (blur)="item.numberOfWeeks=numberOfWeeks.innerText" >{{item.numberOfWeeks}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Planned hours: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #plannedHours name="input-field" (blur)="item.plannedHours=plannedHours.innerText">{{item.plannedHours}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Current hours: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #currentHours name="input-field" (blur)="item.currentHours=currentHours.innerText">{{item.currentHours}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

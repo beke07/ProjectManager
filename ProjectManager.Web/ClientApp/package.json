@@ -24,12 +24,13 @@
     "@angular/platform-server": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
+    "angular-confirmation-popover": "^4.1.0",
     "aspnet-prerendering": "^3.0.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
+    "ng2-dragula": "^1.5.0",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19",
-    "ng2-dragula": "^1.5.0"
+    "zone.js": "^0.8.19"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.0",
@@ -40,6 +41,7 @@
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
+    "jquery": "^3.3.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
