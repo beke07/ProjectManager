@@ -2,7 +2,7 @@
   <div class="card-header">
     <h5 class="mb-0">
       <button [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" id="button" data-toggle="collapse" data-target="#CollapseNewProject" aria-expanded="true" aria-controls="CollapseNewProject">
-        New Project
+        New Project<i class='glyphicon glyphicon-plus'></i>
       </button>
     </h5>
   </div>
@@ -19,7 +19,7 @@
                 <div class="col-sm-3">
                   <label for="name">Name</label>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-7">
                   <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
                 </div>
               </div>
@@ -28,7 +28,7 @@
                 <div class="col-sm-3">
                   <label for="name">Company</label>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-7">
                   <input type="text" class="form-control" id="company" required [(ngModel)]="model.company" name="company" #name="ngModel">
                 </div>
               </div>
@@ -37,7 +37,7 @@
                 <div class="col-sm-3">
                   <label for="name">Risk</label>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-7">
                   <input type="number" class="form-control" id="risk" required [(ngModel)]="model.risk" name="risk" #name="ngModel">
                 </div>
               </div>
@@ -46,7 +46,7 @@
                 <div class="col-sm-3">
                   <label for="name">Planned hours</label>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-7">
                   <input type="number" class="form-control" id="plannedHours" required [(ngModel)]="model.plannedHours" name="plannedHours" #name="ngModel">
                 </div>
               </div>
@@ -55,17 +55,41 @@
                 <div class="col-sm-3">
                   <label for="name">Start date</label>
                 </div>
-                <div class="col-sm-5">
-                  <input type="date" class="form-control" id="startDate" required [(ngModel)]="model.startDate" name="startDate" #name="ngModel">
-                </div>
+                <div class="col-sm-7">
+                  <input class="form-control"
+                         id="startDate"
+                         placeholder="éééé-hh-nn"
+                         autocomplete="off"
+                         [(ngModel)]="model.startDate"
+                         name="startDate"
+                         #name="ngModel"
+                         [bsConfig]="datePickerConfig"
+                         [minDate]="minDate"
+                         [maxDate]="maxDate"
+                         (bsValueChange)="onMinValueChange($event)"
+                         bsDatepicker
+                         required/>                 
+                </div>  
               </div>
 
               <div class="row form-row row-eq-height">
                 <div class="col-sm-3">
                   <label for="name">Due date</label>
                 </div>
-                <div class="col-sm-5">
-                  <input type="date" class="form-control" id="dueDate" required [(ngModel)]="model.dueDate" name="dueDate" #name="ngModel">
+                <div class="col-sm-7">
+                  <input class="form-control"
+                         #dueDate
+                         placeholder="éééé-hh-nn"
+                         autocomplete="off"
+                         [(ngModel)]="model.dueDate"
+                         [minDate]="minDate"
+                         [maxDate]="maxDate"
+                         name="dueDate"
+                         #name="ngModel"
+                         (bsValueChange)="onMaxValueChange($event)"
+                         [bsConfig]="datePickerConfig"
+                         bsDatepicker
+                         required />
                 </div>
               </div>
             </form>

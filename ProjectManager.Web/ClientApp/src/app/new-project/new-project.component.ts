@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Project } from '../../viewmodels/project';
 import { ProjectServices } from '../../services/projectservices';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerConfig } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-new-project',
@@ -11,14 +11,20 @@ import { ProjectServices } from '../../services/projectservices';
     '../projects/projects.component.css'
   ]
 })
-export class NewProjectComponent implements OnInit {
+export class NewProjectComponent {
 
-  constructor(private projectService: ProjectServices) { }
-
-  ngOnInit() { }
+  datePickerConfig: Partial<BsDatepickerConfig>;
+  minDate: Date;
+  maxDate: Date;
 
   public model = new Project();
   public bottomBorderRadius = "3px";
+
+  constructor(private projectService: ProjectServices) {
+    this.datePickerConfig = (<any>Object).assign({}, {
+      dateInputFormat: 'YYYY-MM-DD'
+    });
+  }
 
   openCard(event: any) {
     var target = event.target || event.srcElement || event.currentTarget;
@@ -33,6 +39,14 @@ export class NewProjectComponent implements OnInit {
       target.classList.remove("opened-button");
       target.classList.add("closed-button");
     }
+  }
+
+  onMinValueChange(value: Date) {
+    this.minDate = value;
+  }
+
+  onMaxValueChange(value: Date) {
+    this.maxDate = value;
   }
 
   onSubmit() {

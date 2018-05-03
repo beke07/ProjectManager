@@ -64,7 +64,7 @@
               <h5>Start: </h5>
             </div>
             <div class="col-sm-6">
-              <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate}}</h4>
+              <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate | date: 'yyyy.MM.dd'}}</h4>
             </div>
           </div>
           <div class="row">
@@ -72,7 +72,7 @@
               <h5>End: </h5>
             </div>
             <div class="col-sm-6">
-              <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText" >{{item.dueDate}}</h4>
+              <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText">{{item.dueDate | date: 'yyyy.MM.dd'}}</h4>
             </div>
           </div>
           <div class="row">

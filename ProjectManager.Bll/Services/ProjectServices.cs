@@ -22,7 +22,7 @@ namespace ProjectManager.Bll.Services
         }
 
         public void AddProject(Project project)
-        {
+        {   
             context.Projects.Add(project);
             context.SaveChanges();
         }

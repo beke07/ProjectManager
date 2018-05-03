@@ -51,3 +51,7 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+.new-project-form-wrapper .col-sm-7{
+  width: 330px !important;
+}
