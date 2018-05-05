@@ -38,7 +38,6 @@ namespace ProjectManager.Bll.Services
             employeeToEdit.Name = employee.Name;
             employeeToEdit.Email = employee.Email;
             employeeToEdit.ProjectsForWeeks = employee.ProjectsForWeeks;
-            employeeToEdit.Skills = employee.Skills;
             context.SaveChanges();
         }
 

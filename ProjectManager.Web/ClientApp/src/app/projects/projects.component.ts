@@ -7,6 +7,9 @@ import { Project } from '../../viewmodels/project';
 import { Element } from '@angular/compiler';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { DomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import { SkillServices } from '../../services/skillservices';
+import { Skill } from '../../viewmodels/skill';
 
 @Component({
   selector: 'app-projects',
@@ -21,7 +24,25 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   public idOfElementToDelete: string;
   public projectToEdit: Project = new Project();
 
-  constructor(private renderer: Renderer, private projectService: ProjectServices) {
+  optionsModel: number[] = [];
+  myOptions: IMultiSelectOption[] = [];
+
+  mySettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'glyphicon',
+    dynamicTitleMaxItems: 1,
+    displayAllSelectedText: true
+  };
+
+  constructor(private renderer: Renderer, private projectService: ProjectServices, private skillService: SkillServices) {
+    skillService.getSkills().subscribe(result => {
+      this.myOptions = result as Skill[];
+    });
+
+    //TODO megkell tudni, hogy mik a skilljei és azokat berakni ide, és submit menjen a POST
+    this.optionsModel.push(3);
+    this.optionsModel.push(6);
+    this.optionsModel.push(9);
   }
 
   openCard(event: any) {
@@ -54,12 +75,12 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   }
 
   editCard(event: any) {
-    var target = event.target || event.srcElement || event.currentTarget;   
+    var target = event.target || event.srcElement || event.currentTarget;
 
     this.setEditability(target, Editability.On);
 
     var collapseButton = target.parentElement.querySelectorAll("#collapse-button")[0];
-    if(collapseButton.attributes['aria-expanded'].value === 'false'){
+    if (collapseButton.attributes['aria-expanded'].value === 'false') {
       collapseButton.click();
     }
   }
@@ -75,7 +96,6 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   discardChanges(event: any) {
     var target = event.target || event.srcElement || event.currentTarget;
     this.projectService.setProjectToAnother(this.projectToEdit);
-
     this.setEditability(target, Editability.Off);
   }
 
@@ -97,7 +117,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     else if (OfforOn === Editability.Off) {
       projectWrapper.style.backgroundColor = "white";
     }
-    
+
     let cardBody = <HTMLElement>document.getElementById("Collapse" + target.parentElement.id).querySelector(".card-body");
     if (OfforOn === Editability.On) {
       cardBody.classList.remove("card-body-grey");
@@ -140,7 +160,6 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
   }
 }
 
@@ -148,4 +167,3 @@ enum Editability {
   On,
   Off
 }
-

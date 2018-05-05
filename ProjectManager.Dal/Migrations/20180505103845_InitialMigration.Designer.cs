@@ -11,8 +11,8 @@ using System;
 namespace ProjectManager.Dal.Migrations
 {
     [DbContext(typeof(ProjectManagerDBContext))]
-    [Migration("20180419162946_Init")]
-    partial class Init
+    [Migration("20180505103845_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,19 @@ namespace ProjectManager.Dal.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("EmployeeForWeeks");
+                });
+
+            modelBuilder.Entity("ProjectManager.Models.EmployeeSkills", b =>
+                {
+                    b.Property<int>("SkillId");
+
+                    b.Property<int>("EmployeeId");
+
+                    b.HasKey("SkillId", "EmployeeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeSkills");
                 });
 
             modelBuilder.Entity("ProjectManager.Models.HourPerWeek", b =>
@@ -121,30 +134,27 @@ namespace ProjectManager.Dal.Migrations
                     b.ToTable("ProjectForWeeks");
                 });
 
+            modelBuilder.Entity("ProjectManager.Models.ProjectSkills", b =>
+                {
+                    b.Property<int>("SkillId");
+
+                    b.Property<int>("ProjectId");
+
+                    b.HasKey("SkillId", "ProjectId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectSkills");
+                });
+
             modelBuilder.Entity("ProjectManager.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("EmployeeForWeeksId");
-
-                    b.Property<int?>("EmployeeId");
-
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ProjectForWeeksId");
-
-                    b.Property<int?>("ProjectId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeForWeeksId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProjectForWeeksId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("Skills");
                 });
@@ -158,6 +168,19 @@ namespace ProjectManager.Dal.Migrations
                     b.HasOne("ProjectManager.Models.Project")
                         .WithMany("EmployeesForWeeks")
                         .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("ProjectManager.Models.EmployeeSkills", b =>
+                {
+                    b.HasOne("ProjectManager.Models.Employee", "Employee")
+                        .WithMany("EmployeeSkills")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManager.Models.Skill", "Skill")
+                        .WithMany("EmployeeSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ProjectManager.Models.HourPerWeek", b =>
@@ -189,23 +212,17 @@ namespace ProjectManager.Dal.Migrations
                         .HasForeignKey("ProjectId");
                 });
 
-            modelBuilder.Entity("ProjectManager.Models.Skill", b =>
+            modelBuilder.Entity("ProjectManager.Models.ProjectSkills", b =>
                 {
-                    b.HasOne("ProjectManager.Models.EmployeeForWeeks")
-                        .WithMany("Skills")
-                        .HasForeignKey("EmployeeForWeeksId");
+                    b.HasOne("ProjectManager.Models.Project", "Project")
+                        .WithMany("ProjectSkills")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ProjectManager.Models.Employee")
-                        .WithMany("Skills")
-                        .HasForeignKey("EmployeeId");
-
-                    b.HasOne("ProjectManager.Models.ProjectForWeeks")
-                        .WithMany("Skills")
-                        .HasForeignKey("ProjectForWeeksId");
-
-                    b.HasOne("ProjectManager.Models.Project")
-                        .WithMany("Skills")
-                        .HasForeignKey("ProjectId");
+                    b.HasOne("ProjectManager.Models.Skill", "Skill")
+                        .WithMany("ProjectSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

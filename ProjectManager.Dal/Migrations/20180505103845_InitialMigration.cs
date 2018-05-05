@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ProjectManager.Dal.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,19 @@ namespace ProjectManager.Dal.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skills", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,6 +61,30 @@ namespace ProjectManager.Dal.Migrations
                         principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeSkills",
+                columns: table => new
+                {
+                    SkillId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeSkills", x => new { x.SkillId, x.EmployeeId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeSkills_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,6 +140,30 @@ namespace ProjectManager.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectSkills",
+                columns: table => new
+                {
+                    SkillId = table.Column<int>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectSkills", x => new { x.SkillId, x.ProjectId });
+                    table.ForeignKey(
+                        name: "FK_ProjectSkills_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HourPerWeek",
                 columns: table => new
                 {
@@ -129,47 +190,6 @@ namespace ProjectManager.Dal.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Skills",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EmployeeForWeeksId = table.Column<int>(nullable: true),
-                    EmployeeId = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    ProjectForWeeksId = table.Column<int>(nullable: true),
-                    ProjectId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skills", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Skills_EmployeeForWeeks_EmployeeForWeeksId",
-                        column: x => x.EmployeeForWeeksId,
-                        principalTable: "EmployeeForWeeks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_ProjectForWeeks_ProjectForWeeksId",
-                        column: x => x.ProjectForWeeksId,
-                        principalTable: "ProjectForWeeks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeForWeeks_EmployeeId",
                 table: "EmployeeForWeeks",
@@ -179,6 +199,11 @@ namespace ProjectManager.Dal.Migrations
                 name: "IX_EmployeeForWeeks_ProjectId",
                 table: "EmployeeForWeeks",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeSkills_EmployeeId",
+                table: "EmployeeSkills",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HourPerWeek_EmployeeForWeeksId",
@@ -206,39 +231,30 @@ namespace ProjectManager.Dal.Migrations
                 column: "ProjectLeaderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skills_EmployeeForWeeksId",
-                table: "Skills",
-                column: "EmployeeForWeeksId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_EmployeeId",
-                table: "Skills",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_ProjectForWeeksId",
-                table: "Skills",
-                column: "ProjectForWeeksId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_ProjectId",
-                table: "Skills",
+                name: "IX_ProjectSkills_ProjectId",
+                table: "ProjectSkills",
                 column: "ProjectId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "EmployeeSkills");
+
+            migrationBuilder.DropTable(
                 name: "HourPerWeek");
 
             migrationBuilder.DropTable(
-                name: "Skills");
+                name: "ProjectSkills");
 
             migrationBuilder.DropTable(
                 name: "EmployeeForWeeks");
 
             migrationBuilder.DropTable(
                 name: "ProjectForWeeks");
+
+            migrationBuilder.DropTable(
+                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "Projects");

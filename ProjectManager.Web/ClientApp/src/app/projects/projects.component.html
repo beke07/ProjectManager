@@ -61,26 +61,10 @@
           </div>
           <div class="row">
             <div class="col-sm-3">
-              <h5>Start: </h5>
-            </div>
-            <div class="col-sm-6">
-              <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate | date: 'yyyy.MM.dd'}}</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
-              <h5>End: </h5>
-            </div>
-            <div class="col-sm-6">
-              <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText">{{item.dueDate | date: 'yyyy.MM.dd'}}</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
               <h5>Weeks: </h5>
             </div>
             <div class="col-sm-6">
-              <h4 #numberOfWeeks name="input-field" (blur)="item.numberOfWeeks=numberOfWeeks.innerText" >{{item.numberOfWeeks}}</h4>
+              <h4 #numberOfWeeks name="input-field" (blur)="item.numberOfWeeks=numberOfWeeks.innerText">{{item.numberOfWeeks}}</h4>
             </div>
           </div>
           <div class="row">
@@ -97,6 +81,50 @@
             </div>
             <div class="col-sm-6">
               <h4 #currentHours name="input-field" (blur)="item.currentHours=currentHours.innerText">{{item.currentHours}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Start: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate | date: 'yyyy.MM.dd'}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>End: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText">{{item.dueDate | date: 'yyyy.MM.dd'}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Skills: </h5>
+            </div>
+            <div *ngIf="item.skills?.length == 0">
+              <div class="col-sm-6">
+                <h4>There are no skills added.</h4>
+              </div>
+            </div>
+            <div *ngFor="let skill of item.skills; let i = index">
+              <div *ngIf="i == 0" class="col-sm-6">
+                <h4>{{skill.name}}</h4>
+              </div>
+              <div *ngIf="i > 0" class="col-sm-offset-3 col-sm-6">
+                <h4>{{skill.name}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row form-row row-eq-height">
+              <div class="col-sm-3">
+                <label for="name">Skills</label>
+              </div>
+              <div class="col-sm-7">
+                <ss-multiselect-dropdown id="skills" required [options]="myOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+              </div>
             </div>
           </div>
         </div>

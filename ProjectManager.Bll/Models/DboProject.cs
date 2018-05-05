@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ProjectManager.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ProjectManager.Models
+namespace ProjectManager.Bll.Models
 {
-    public class Project
+    public class DboProject
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,7 +17,7 @@ namespace ProjectManager.Models
         public int NumberOfWeeks { get; set; }
         public int PlannedHours { get; set; }
         public int CurrentHours { get; set; }
-        public List<ProjectSkills> ProjectSkills { get; set; }
+        public List<DboSkill> Skills { get; set; }
         public List<EmployeeForWeeks> EmployeesForWeeks { get; set; }
     }
 }

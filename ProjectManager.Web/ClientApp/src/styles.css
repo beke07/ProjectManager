@@ -145,3 +145,64 @@ h1 {
   border: 1px solid #eee !important;
   border-top: 0 !important;
 }
+
+ss-multiselect-dropdown{
+  border-left: 0 !important;
+}
+
+ss-multiselect-dropdown .dropdown-item {
+  display: block;
+  padding: 5px !important;
+  color: #555 !important;
+}
+
+ss-multiselect-dropdown .dropdown-item:hover,
+ss-multiselect-dropdown .dropdown-item:focus,
+ss-multiselect-dropdown .dropdown-item:active{
+  text-decoration: none !important;
+}
+
+ss-multiselect-dropdown .dropdown-item span:focus{
+  outline: 0 !important;
+}
+
+ss-multiselect-dropdown .dropdown-item .glyphicon {
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+
+ss-multiselect-dropdown button {
+  width: 300px !important;
+  border: 1px solid #ccc !important;
+  background-color: white !important;
+  color: #555 !important;
+}
+
+ss-multiselect-dropdown button:focus, 
+ss-multiselect-dropdown button:active {
+  border: 1px solid #555 !important;
+}
+
+ss-multiselect-dropdown .dropdown-menu {
+  width: 300px !important;
+}
+
+ss-multiselect-dropdown .input-group-append{
+  display: none !important;
+}
+
+ss-multiselect-dropdown .search-container {
+  padding: 5px !important;
+  width: 100% !important;
+}
+
+ss-multiselect-dropdown .search-container input {
+  border: 1px solid #eee !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+ss-multiselect-dropdown .search-container input:focus {
+  border: 1px solid #555 !important;
+}

@@ -33,11 +33,17 @@
 }
 
 .ng-valid[required], .ng-valid.required {
-  border-left: 5px solid #42A948 !important;
+  border-left: 5px solid #42A948;
 }
 
 .ng-invalid:not(form) {
-  border-left: 5px solid #d9534f !important;
+  border-left: 5px solid #d9534f;
+}
+
+.ng-invalid:not(form):focus,
+.ng-valid[required]:focus,
+.ng-valid.required:focus {
+  border-left: 5px solid #c09f80 !important;
 }
 
 .submit-row {

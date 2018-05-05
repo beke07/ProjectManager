@@ -2,6 +2,12 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { Project } from '../../viewmodels/project';
 import { ProjectServices } from '../../services/projectservices';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import { SkillServices } from '../../services/skillservices';
+import { Skill } from '../../viewmodels/skill';
+import { SkillToProjectAndEmployee } from '../../viewmodels/skillToProjectAndEmployee';
+import { EmployeeServices } from '../../services/employeeservices';
+import { Employee } from '../../viewmodels/employee';
 
 @Component({
   selector: 'app-new-project',
@@ -20,10 +26,55 @@ export class NewProjectComponent {
   public model = new Project();
   public bottomBorderRadius = "3px";
 
-  constructor(private projectService: ProjectServices) {
+  optionsModel: number[];
+  projectLeader: number[];
+
+  myOptions: IMultiSelectOption[] = [];
+  projectLeaderOptions: IMultiSelectOption[] = [];
+
+  projectLeadersettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'glyphicon',
+    dynamicTitleMaxItems: 1,
+    selectionLimit: 1,
+    closeOnSelect: true,
+    autoUnselect: true,
+    displayAllSelectedText: true
+  };
+
+  mySettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'glyphicon',
+    dynamicTitleMaxItems: 1,
+    displayAllSelectedText: true
+  };
+
+  myTexts: IMultiSelectTexts = {
+    checkAll: 'Select all',
+    uncheckAll: 'Unselect all',
+    checked: 'item selected',
+    checkedPlural: 'items selected',
+    searchPlaceholder: 'Find',
+    defaultTitle: 'Select',
+    allSelected: 'All selected',
+  };
+
+  constructor(private projectService: ProjectServices, private skillService: SkillServices, private employeeService: EmployeeServices) {
     this.datePickerConfig = (<any>Object).assign({}, {
       dateInputFormat: 'YYYY-MM-DD'
     });
+
+    skillService.getSkills().subscribe(result => {
+      this.myOptions = result as Skill[];
+    });
+
+    employeeService.getEmployees().subscribe(result => {
+      this.projectLeaderOptions = result as Employee[];
+    });
+  }
+
+  onChange() {
+    console.log(this.projectLeader);
   }
 
   openCard(event: any) {
@@ -50,6 +101,17 @@ export class NewProjectComponent {
   }
 
   onSubmit() {
+    this.model.projectSkills = [];
+    for (let i = 0; i < this.optionsModel.length; i++) {
+      let projectSkill = new SkillToProjectAndEmployee();
+      projectSkill.skillId = this.optionsModel[i];
+      this.model.projectSkills.push(projectSkill);
+    }
+
+    let projectLeaderEmployee = new Employee();
+    projectLeaderEmployee.id = this.projectLeader[0];
+    this.model.projectLeader = projectLeaderEmployee;
+
     this.projectService.createNewProject(this.model);
   }
 

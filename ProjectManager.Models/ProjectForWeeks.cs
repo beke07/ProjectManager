@@ -10,7 +10,6 @@ namespace ProjectManager.Models
     {
         public int Id { get; set; }
         public Project Project { get; set; }
-        public List<Skill> Skills { get; set; }
         public List<HourPerWeek> HoursPerWeek { get; set; }
     }
 }

@@ -23,28 +23,28 @@ namespace ProjectManager.Bll.Services
                 var skills = new List<Skill>
                 {
                     new Skill { Name = "C# Junior developer"},
-                    new Skill { Name = "C# Junior developer"},
+                    new Skill { Name = "C# Senior developer"},
 
                     new Skill { Name = "Java Junior developer"},
-                    new Skill { Name = "Java Junior developer"},
+                    new Skill { Name = "Java Senior developer"},
 
                     new Skill { Name = "Python Junior developer"},
-                    new Skill { Name = "Python Junior developer"},
+                    new Skill { Name = "Python Senior developer"},
 
                     new Skill { Name = "Angular Junior developer"},
-                    new Skill { Name = "Angular Junior developer"},
+                    new Skill { Name = "Angular Senior developer"},
 
                     new Skill { Name = "C++ Junior developer"},
-                    new Skill { Name = "C++ Junior developer"},
+                    new Skill { Name = "C++ Senior developer"},
 
                     new Skill { Name = "C Junior developer"},
-                    new Skill { Name = "C Junior developer"},
+                    new Skill { Name = "C Senior developer"},
 
                     new Skill { Name = "Ruby Junior developer"},
-                    new Skill { Name = "Ruby Junior developer"},
+                    new Skill { Name = "Ruby Senior developer"},
 
                     new Skill { Name = "JavaScript Junior developer"},
-                    new Skill { Name = "JavaScript Junior developer"}
+                    new Skill { Name = "JavaScript Senior developer"}
                 };
                 context.AddRange(skills);
             }
@@ -57,28 +57,24 @@ namespace ProjectManager.Bll.Services
                     {
                         Name = "Tóth Tibor",
                         Email = "toth.tibor@aut.bme.hu",
-                        Skills = new List<Skill>(),
                         ProjectsForWeeks = new List<ProjectForWeeks>()
                     },
                     new Employee
                     {
-                        Name = "Ferenczi Judot",
+                        Name = "Ferenczi Judit",
                         Email = "ferenczi.judit@aut.bme.hu",
-                        Skills = new List<Skill>(),
                         ProjectsForWeeks = new List<ProjectForWeeks>()
                     },
                     new Employee
                     {
                         Name = "Ambrus Attila",
                         Email = "ambrus.attila@aut.bme.hu",
-                        Skills = new List<Skill>(),
                         ProjectsForWeeks = new List<ProjectForWeeks>()
                     },
                     new Employee
                     {
                         Name = "Kellner Menyhárt",
                         Email = "kellner.menyhart@aut.bme.hu",
-                        Skills = new List<Skill>(),
                         ProjectsForWeeks = new List<ProjectForWeeks>()
                     }
                 };
@@ -99,7 +95,6 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        Skills = new List<Skill>(),
                         EmployeesForWeeks = new List<EmployeeForWeeks>()
                     },
                     new Project
@@ -112,7 +107,6 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        Skills = new List<Skill>(),
                         EmployeesForWeeks = new List<EmployeeForWeeks>()
                     },
                     new Project
@@ -125,7 +119,6 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        Skills = new List<Skill>(),
                         EmployeesForWeeks = new List<EmployeeForWeeks>()
                     }
                 };

@@ -4,13 +4,17 @@ import { Observable } from "rxjs/Observable";
 import { Project } from "../viewmodels/project";
 import { catchError } from "rxjs/operators";
 import { getBaseUrl } from "../main";
+
 @Injectable()
 export class ProjectServices {
 
   public projects: Project[];
 
   constructor(private http: HttpClient) {
-    this.getProjects().subscribe(result => this.projects = result as Project[]);
+    this.getProjects().subscribe(result => {
+      this.projects = result as Project[]
+      console.log(result);
+    });
   }
 
   getProjects(): Observable<Project[]> {
@@ -55,7 +59,6 @@ export class ProjectServices {
         this.projects[i].plannedHours = project.plannedHours;
         this.projects[i].projectLeader = project.projectLeader;
         this.projects[i].risk = project.risk;
-        this.projects[i].skills = project.skills;
         this.projects[i].startDate = project.startDate;
       }
     }

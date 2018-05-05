@@ -1,1 +1,1 @@
-{"version":3,"file":"employee.js","sourceRoot":"","sources":["employee.ts"],"names":[],"mappings":";;AAGA;IAAA;IAMA,CAAC;IAAD,eAAC;AAAD,CAAC,AAND,IAMC;AANY,4BAAQ"}
+{"version":3,"file":"employee.js","sourceRoot":"","sources":["employee.ts"],"names":[],"mappings":";;AAGA;IAAA;IAMA,CAAC;IAAD,eAAC;AAAD,CAAC,AAND,IAMC;AANY,4BAAQ;AAQrB,QAAQ,CAAC,SAAS,CAAC,QAAQ,GAAG;IAC5B,MAAM,CAAC,IAAI,CAAC,IAAI,CAAC;AACnB,CAAC,CAAA"}

@@ -10,5 +10,7 @@ namespace ProjectManager.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<ProjectSkills> ProjectSkills { get; set; }
+        public List<EmployeeSkills> EmployeeSkills { get; set; }
     }
 }

@@ -51,6 +51,7 @@
                 </div>
               </div>
 
+
               <div class="row form-row row-eq-height">
                 <div class="col-sm-3">
                   <label for="name">Start date</label>
@@ -68,8 +69,8 @@
                          [maxDate]="maxDate"
                          (bsValueChange)="onMinValueChange($event)"
                          bsDatepicker
-                         required/>                 
-                </div>  
+                         required />
+                </div>
               </div>
 
               <div class="row form-row row-eq-height">
@@ -92,6 +93,25 @@
                          required />
                 </div>
               </div>
+
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-3">
+                  <label for="name">Project leader</label>
+                </div>
+                <div class="col-sm-7">
+                  <ss-multiselect-dropdown id="skills" required [options]="projectLeaderOptions" [texts]="myTexts" [settings]="projectLeadersettings" [(ngModel)]="projectLeader" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-3">
+                  <label for="name">Skills</label>
+                </div>
+                <div class="col-sm-7">
+                  <ss-multiselect-dropdown id="skills" required [options]="myOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                </div>
+              </div>
+
             </form>
           </div>
         </div>

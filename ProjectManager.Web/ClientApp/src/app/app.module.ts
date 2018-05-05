@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -12,6 +13,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectServices } from '../services/projectservices';
+import { SkillServices } from '../services/skillservices';
 import { EmployeeServices } from '../services/employeeservices';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
@@ -32,6 +34,7 @@ import { EmployeesComponent } from './employees/employees.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MultiselectDropdownModule,
     BsDatepickerModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'success',
@@ -50,7 +53,8 @@ import { EmployeesComponent } from './employees/employees.component';
   ],
   providers: [
     ProjectServices,
-    EmployeeServices
+    EmployeeServices,
+    SkillServices
   ],
   bootstrap: [AppComponent]
 })

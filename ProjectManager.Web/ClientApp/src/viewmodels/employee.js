@@ -6,4 +6,7 @@ var Employee = /** @class */ (function () {
     return Employee;
 }());
 exports.Employee = Employee;
+Employee.prototype.toString = function employeeToString() {
+    return this.name;
+};
 //# sourceMappingURL=employee.js.map
