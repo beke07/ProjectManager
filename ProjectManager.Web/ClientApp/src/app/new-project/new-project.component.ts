@@ -26,6 +26,9 @@ export class NewProjectComponent {
   public model = new Project();
   public bottomBorderRadius = "3px";
 
+  notfound: boolean;
+  addSkillsButton: HTMLButtonElement;
+
   optionsModel: number[];
   projectLeader: number[];
 
@@ -49,14 +52,13 @@ export class NewProjectComponent {
     displayAllSelectedText: true
   };
 
-  myTexts: IMultiSelectTexts = {
-    checkAll: 'Select all',
-    uncheckAll: 'Unselect all',
-    checked: 'item selected',
-    checkedPlural: 'items selected',
-    searchPlaceholder: 'Find',
-    defaultTitle: 'Select',
-    allSelected: 'All selected',
+  projectLeaderText: IMultiSelectTexts = {
+    defaultTitle: 'Select project leader',
+  };
+
+  skillsText: IMultiSelectTexts = {
+    defaultTitle: 'Select skills',
+    searchEmptyResult: ''
   };
 
   constructor(private projectService: ProjectServices, private skillService: SkillServices, private employeeService: EmployeeServices) {
@@ -71,10 +73,76 @@ export class NewProjectComponent {
     employeeService.getEmployees().subscribe(result => {
       this.projectLeaderOptions = result as Employee[];
     });
+
+    this.optionsModel = [];
+
+    this.addSkillsButton = document.createElement("button");
+    this.addSkillsButton.id = "add-skill-button";
+    this.addSkillsButton.innerHTML = "Click to add this skill  ";
+    this.addSkillsButton.type = "button";
+
+    let component = this;
+    this.addSkillsButton.addEventListener('click', function () {
+      component.skillService.createNewSkill(this.name).subscribe(result => {
+
+        skillService.getSkills().subscribe(result => {
+          component.skillService.skills = result as Skill[];
+        });
+
+        component.optionsModel.push(result.id);
+      })
+    });
+
+    this.addSkillsButton.classList.add("btn");
+    this.addSkillsButton.classList.add("opened-button");
+
+    this.addSkillsButton.setAttribute('style', 'width: 288px !important;');
+    this.addSkillsButton.style.height = "34px";
+    this.addSkillsButton.style.marginLeft = "5px";
+    this.addSkillsButton.style.marginRight = "5px";
+    this.addSkillsButton.style.borderRadius = "3px";
+
+    let i = document.createElement("i");
+    i.classList.add("glyphicon");
+    i.classList.add("glyphicon-plus");
+
+    this.addSkillsButton.appendChild(i);
+  }
+
+  searchInput(event) {
+    var target = event.target || event.srcElement || event.currentTarget;
+    let searchValue = (<HTMLInputElement>target).value
+    let notFound = true;
+
+    for (let i = 0; i < this.myOptions.length; i++) {
+      let name = this.myOptions[i].name;
+      if (name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0) {
+        notFound = false;
+      }
+    }
+
+    let dropdownMenu = <HTMLElement>document.getElementsByClassName("dropdown-menu")[0];
+    let empty = <HTMLElement>dropdownMenu.getElementsByClassName("empty")[0];
+
+    if (notFound) {
+      dropdownMenu.insertBefore(this.addSkillsButton, empty);
+
+      this.addSkillsButton.name = searchValue;
+
+      if (empty.style.display != "none") {
+        empty.style.display = "none";
+      }
+    }
+    else {
+      let addButton = <HTMLButtonElement>dropdownMenu.querySelector("#add-skill-button");
+      if (addButton) {
+        dropdownMenu.removeChild(this.addSkillsButton);
+      }
+    }
   }
 
   onChange() {
-    console.log(this.projectLeader);
+
   }
 
   openCard(event: any) {

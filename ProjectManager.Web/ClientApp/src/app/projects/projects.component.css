@@ -2,7 +2,7 @@
   margin-top: 25px;
   margin-right: 10px;
   padding: 15px 0;
-  width: 75%;
+  width: 60%;
   margin-bottom: 25px;
 }
 
@@ -27,12 +27,13 @@
 .card-body h4 {
   font-weight: bolder;
   padding-left: 10px;
+  border: 1px solid transparent;
   padding-right: 10px;
   margin-bottom: 0;
 }
 
 .card-body h5, h4{
-  margin-bottom: 0;
+  margin-bottom: 2px;
   line-height: 30px;
 }
 
@@ -49,7 +50,7 @@
 }
 
 .card-body-grey {
-  background-color: #eee;
+  background: linear-gradient(to right, rgba(238,238,238,0.9), rgba(238,238,238,0.5)) !important; 
 }
 
 .card-header .glyphicon {

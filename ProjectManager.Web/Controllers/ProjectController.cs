@@ -14,13 +14,10 @@ namespace ProjectManager.Web.Controllers
     public class ProjectController : Controller
     {
         private ProjectServices projectServices;
-        private InitService initService;
 
         public ProjectController(ProjectManagerDBContext _context)
         {
             projectServices = new ProjectServices(_context);
-            initService = new InitService(_context);
-            initService.InitializeDatabase();
         }
 
         [HttpGet("[action]")]
@@ -32,7 +29,7 @@ namespace ProjectManager.Web.Controllers
         [HttpPost("[action]")]
         public DboProject CreateNewProject([FromBody] Project Project)
         {
-            return projectServices.AddProject(Project);
+            return projectServices.CreateProject(Project);
         }
 
         [HttpDelete("[action]")]
@@ -43,10 +40,9 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPut("[action]")]
-        public Project EditProject([FromBody] Project project)
+        public DboProject EditProject([FromBody] Project project)
         {
-            projectServices.EditProject(project);
-            return project;
+            return projectServices.EditProject(project);
         }
     }
 }

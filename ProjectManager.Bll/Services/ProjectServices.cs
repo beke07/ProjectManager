@@ -12,62 +12,34 @@ namespace ProjectManager.Bll.Services
     public class ProjectServices
     {
         private readonly ProjectManagerDBContext context;
+        private SkillServices skillServices;
+        private EmployeeServices employeeServices;
 
         public ProjectServices(ProjectManagerDBContext _context)
         {
             context = _context;
+            skillServices = new SkillServices(context);
+            employeeServices = new EmployeeServices(context);
         }
 
         public List<DboProject> GetProjects()
         {
-            List<Project> project = context.Projects.ToList();
+            List<Project> projects = context.Projects.Include(p => p.ProjectLeader).ToList();
             List<DboProject> dboProjects = new List<DboProject>();
 
-            foreach (var item in project)
+            foreach (var item in projects)
             {
-                DboProject dboProject = new DboProject()
-                {
-                    Id = item.Id,
-                    Company = item.Company,
-                    ProjectLeader = item.ProjectLeader,
-                    CurrentHours = item.CurrentHours,
-                    DueDate = item.DueDate,
-                    EmployeesForWeeks = item.EmployeesForWeeks,
-                    Name = item.Name,
-                    NumberOfWeeks = item.NumberOfWeeks,
-                    PlannedHours = item.PlannedHours,
-                    Risk = item.Risk,
-                    Skills = FindSkillsForProject(item),
-                    StartDate = item.StartDate
-                };
-
+                DboProject dboProject = (DboProject)item;
+                dboProject.Skills = skillServices.GetSkillsForProject(item.Id);
                 dboProjects.Add(dboProject);
             }
 
             return dboProjects;
         }
 
-        public List<DboSkill> FindSkillsForProject(Project project)
+        public DboProject CreateProject(Project project)
         {
-            List<ProjectSkills> projectSkills = new List<ProjectSkills>();
-            List<DboSkill> dboSkills = new List<DboSkill>();
-
-            projectSkills = context.ProjectSkills.Where(ps => ps.ProjectId == project.Id).Include(ps => ps.Skill).ToList();
-
-            foreach (var item in projectSkills)
-            {
-                DboSkill dboSkill = new DboSkill();
-                dboSkill.Id = item.Skill.Id;
-                dboSkill.Name = item.Skill.Name;
-                dboSkills.Add(dboSkill);
-            }
-
-            return dboSkills;
-        }
-
-        public DboProject AddProject(Project project)
-        {
-            project.ProjectLeader = context.Employees.Where(e => e.Id == project.ProjectLeader.Id).FirstOrDefault();
+            project.ProjectLeader = employeeServices.FindEmployeeById(project.ProjectLeader.Id);
             context.Projects.Add(project);
             context.SaveChanges();
 
@@ -85,23 +57,10 @@ namespace ProjectManager.Bll.Services
                 skills.Add(dboSkill);
             }
 
-            DboProject DboProject = new DboProject()
-            {
-                Id = project.Id,
-                Name = project.Name,
-                Company = project.Company,
-                DueDate = project.DueDate,
-                EmployeesForWeeks = project.EmployeesForWeeks,
-                NumberOfWeeks = project.NumberOfWeeks,
-                PlannedHours = project.PlannedHours,
-                ProjectLeader = project.ProjectLeader,
-                Risk = project.Risk,
-                StartDate = project.StartDate,
-                CurrentHours = project.CurrentHours,
-                Skills = skills
-            };
+            DboProject dboProject = (DboProject)project;
+            dboProject.Skills = skills;
 
-            return DboProject;
+            return dboProject;
         }
 
         public void DeleteProject(int projectId)
@@ -111,8 +70,12 @@ namespace ProjectManager.Bll.Services
             context.SaveChanges();
         }
 
-        public void EditProject(Project project)
+        public DboProject EditProject(Project project)
         {
+            List<ProjectSkills> projectSkills = context.ProjectSkills.Where(ps => ps.ProjectId == project.Id).ToList();
+            context.ProjectSkills.RemoveRange(projectSkills);
+            context.SaveChanges();
+
             Project projectToEdit = FindProjectById(project.Id);
             projectToEdit.Company = project.Company;
             projectToEdit.CurrentHours = project.CurrentHours;
@@ -120,11 +83,16 @@ namespace ProjectManager.Bll.Services
             projectToEdit.Name = project.Name;
             projectToEdit.NumberOfWeeks = project.NumberOfWeeks;
             projectToEdit.PlannedHours = project.PlannedHours;
-            projectToEdit.ProjectLeader = project.ProjectLeader;
+            projectToEdit.ProjectLeader = employeeServices.FindEmployeeById(project.ProjectLeader.Id);
             projectToEdit.Risk = project.Risk;
             projectToEdit.StartDate = project.StartDate;
             projectToEdit.DueDate = project.DueDate;
+            projectToEdit.ProjectSkills = project.ProjectSkills;
             context.SaveChanges();
+
+            DboProject dboProject = (DboProject)projectToEdit;
+            dboProject.Skills = skillServices.GetSkillsForProject(projectToEdit.Id);
+            return dboProject;
         }
 
         public Project FindProjectById(int projectId)

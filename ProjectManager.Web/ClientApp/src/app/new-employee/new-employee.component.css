@@ -1,0 +1,4 @@
+#add-skill-button:hover,
+#add-skill-button:focus {
+  border: 0 !important;
+}

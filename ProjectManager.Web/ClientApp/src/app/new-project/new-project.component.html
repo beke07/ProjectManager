@@ -12,54 +12,54 @@
   <div id="new-project-accordion">
     <div class="card">
       <div id="CollapseNewProject" class="collapse" aria-labelledby="HeadingNewProject" data-parent="#new-project-accordion">
-        <div class="card-body new-project-card-body">
-          <div class="new-project-form-wrapper">
-            <form (ngSubmit)="onSubmit()" #newProjectForm="ngForm" id="new-project-form">
+        <div class="card-body new-project-card-body" style="width: 100%;">
+          <div class="new-project-form-wrapper" style="width: 100%;">
+            <form (ngSubmit)="onSubmit()" #newProjectForm="ngForm" id="new-project-form" style="width: 100%; padding-right: 30px">
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <label for="name">Name</label>
                 </div>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Write here...">
                 </div>
               </div>
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Company</label>
+                <div class="col-sm-4">
+                  <label for="company">Company</label>
                 </div>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control" id="company" required [(ngModel)]="model.company" name="company" #name="ngModel">
-                </div>
-              </div>
-
-              <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Risk</label>
-                </div>
-                <div class="col-sm-7">
-                  <input type="number" class="form-control" id="risk" required [(ngModel)]="model.risk" name="risk" #name="ngModel">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="company" required [(ngModel)]="model.company" name="company" #name="ngModel" placeholder="Write here...">
                 </div>
               </div>
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Planned hours</label>
+                <div class="col-sm-4">
+                  <label for="risk">Risk</label>
                 </div>
-                <div class="col-sm-7">
-                  <input type="number" class="form-control" id="plannedHours" required [(ngModel)]="model.plannedHours" name="plannedHours" #name="ngModel">
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id="risk" required [(ngModel)]="model.risk" name="risk" #name="ngModel" placeholder="Write here...">
+                </div>
+              </div>
+
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-4">
+                  <label for="plannedHours">Planned hours</label>
+                </div>
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id="plannedHours" required [(ngModel)]="model.plannedHours" name="plannedHours" #name="ngModel" placeholder="Write here...">
                 </div>
               </div>
 
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Start date</label>
+                <div class="col-sm-4">
+                  <label for="startDate">Start date</label>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-8">
                   <input class="form-control"
                          id="startDate"
-                         placeholder="éééé-hh-nn"
+                         placeholder="Click for input date..."
                          autocomplete="off"
                          [(ngModel)]="model.startDate"
                          name="startDate"
@@ -74,13 +74,14 @@
               </div>
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Due date</label>
+                <div class="col-sm-4">
+                  <label for="duedate">Due date</label>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-8">
                   <input class="form-control"
+                         id="duedate"
                          #dueDate
-                         placeholder="éééé-hh-nn"
+                         placeholder="Click for input date..."
                          autocomplete="off"
                          [(ngModel)]="model.dueDate"
                          [minDate]="minDate"
@@ -95,20 +96,20 @@
               </div>
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Project leader</label>
+                <div class="col-sm-4">
+                  <label for="projleader">Project leader</label>
                 </div>
-                <div class="col-sm-7">
-                  <ss-multiselect-dropdown id="skills" required [options]="projectLeaderOptions" [texts]="myTexts" [settings]="projectLeadersettings" [(ngModel)]="projectLeader" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                <div class="col-sm-8">
+                  <ss-multiselect-dropdown id="projleader" required [options]="projectLeaderOptions" [texts]="projectLeaderText" [settings]="projectLeadersettings" [(ngModel)]="projectLeader" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
                 </div>
               </div>
 
               <div class="row form-row row-eq-height">
-                <div class="col-sm-3">
-                  <label for="name">Skills</label>
+                <div class="col-sm-4">
+                  <label for="skills">Skills</label>
                 </div>
-                <div class="col-sm-7">
-                  <ss-multiselect-dropdown id="skills" required [options]="myOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                <div class="col-sm-8">
+                  <ss-multiselect-dropdown id="skills" required [options]="this.skillService.skills" (input)="searchInput($event)" [texts]="skillsText" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
                 </div>
               </div>
 
@@ -117,7 +118,7 @@
         </div>
         <div class="submit-row">
           <div class="row text-right">
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="padding-right: 30px;">
               <input type="submit" value="Create Project" form="new-project-form" class="btn opened-button" [disabled]="!newProjectForm.form.valid" />
             </div>
           </div>

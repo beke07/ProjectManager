@@ -1,14 +1,22 @@
 <app-new-project></app-new-project>
 
 <div id="project-wrapper" class="row white-card-design project-wrapper">
-  <h1>Projects</h1>
-  <p *ngIf="!projectService.projects"><em style="margin-left: 25px;">Loading...</em></p>
+  <div class="row form-row" style="display: flex; align-items: center;">
+    <div class="col-lg-4">
+      <h1>Projects</h1>
+    </div>
+    <div class="col-lg-8" style="display: flex; justify-content: flex-end; padding-right: 30px;">
+      <input type="text" (input)="search($event)" placeholder="Search..." class="form-control" style="width: 200px" />
+    </div>
+  </div>
 
-  <div id="accordion" *ngFor="let item of projectService.projects">
+  <p *ngIf="!projectService.projectsToSearch"><em style="margin-left: 25px;">Loading...</em></p>
+
+  <div id="accordion" *ngFor="let item of projectService.projectsToSearch">
     <div class="card">
       <div class="card-header" id="Heading{{item.id}}">
         <h5 class="mb-0" id="{{item.id}}">
-          <button id="collapse-button" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
+          <button id="collapse-button" name="{{item.id}}" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
             {{item.name}}<i class='glyphicon glyphicon-menu-down'></i>
           </button>
           <button id="{{item.id}}"
@@ -17,7 +25,7 @@
                   mwlConfirmationPopover
                   [popoverTitle]="popoverTitle"
                   [popoverMessage]="popoverMessage"
-                  placement="top"
+                  placement="right"
                   (confirm)="deleteCard()">
             <i id="{{item.id}}" class='glyphicon glyphicon-trash'></i>
           </button>
@@ -27,7 +35,7 @@
           <button id="cancel-button" (click)="discardChanges($event)" [ngClass]="['not-visible','cancel-button', 'pull-right', 'btn', 'btn-link']">
             <i class='glyphicon glyphicon-remove'></i>
           </button>
-          <button id="ok-button" (click)="saveChanges($event)"  [ngClass]="['not-visible','ok-button', 'pull-right', 'btn', 'btn-link']">
+          <button id="ok-button" (click)="saveChanges($event)" [ngClass]="['not-visible','ok-button', 'pull-right', 'btn', 'btn-link']">
             <i class='glyphicon glyphicon-ok'></i>
           </button>
         </h5>
@@ -49,6 +57,17 @@
             </div>
             <div class="col-sm-6">
               <h4 #company name="input-field" (blur)="item.company=company.innerText">{{item.company}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Project leader: </h5>
+            </div>
+            <div class="col-sm-6" id="project-leader">
+              <h4 name="input-field">{{item.projectLeader.name}}</h4>
+            </div>
+            <div class="col-sm-6" id="project-leader-options" style="display:none;">
+              <ss-multiselect-dropdown id="skills" required [options]="projectLeaderOptions" [texts]="myTexts" [settings]="projectLeadersettings" [(ngModel)]="projectLeader" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
             </div>
           </div>
           <div class="row">
@@ -103,12 +122,12 @@
             <div class="col-sm-3">
               <h5>Skills: </h5>
             </div>
-            <div *ngIf="item.skills?.length == 0">
+            <div *ngIf="item.skills?.length == 0" id="skills-no-added">
               <div class="col-sm-6">
                 <h4>There are no skills added.</h4>
               </div>
             </div>
-            <div *ngFor="let skill of item.skills; let i = index">
+            <div *ngFor="let skill of item.skills; let i = index" id="skill-list">
               <div *ngIf="i == 0" class="col-sm-6">
                 <h4>{{skill.name}}</h4>
               </div>
@@ -116,15 +135,8 @@
                 <h4>{{skill.name}}</h4>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="row form-row row-eq-height">
-              <div class="col-sm-3">
-                <label for="name">Skills</label>
-              </div>
-              <div class="col-sm-7">
-                <ss-multiselect-dropdown id="skills" required [options]="myOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
-              </div>
+            <div class="col-sm-6" id="edit-skills" style="display:none;">
+              <ss-multiselect-dropdown id="skills" required [options]="this.skillService.skills" (input)="searchInput($event)" [texts]="skillsText" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
             </div>
           </div>
         </div>

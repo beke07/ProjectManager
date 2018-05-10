@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+} from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,6 +16,10 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
 
+  constructor() {
+
+  }
+
   collapse() {
     this.isExpanded = false;
   }
@@ -15,4 +27,5 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
 }

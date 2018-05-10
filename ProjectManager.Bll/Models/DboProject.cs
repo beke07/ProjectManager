@@ -7,6 +7,25 @@ namespace ProjectManager.Bll.Models
 {
     public class DboProject
     {
+        public DboProject()
+        {
+        }
+
+        public DboProject(Project project)
+        {
+            Id = project.Id;
+            Name = project.Name;
+            Company = project.Company;
+            DueDate = project.DueDate;
+            EmployeesForWeeks = project.EmployeesForWeeks;
+            NumberOfWeeks = project.NumberOfWeeks;
+            PlannedHours = project.PlannedHours;
+            Risk = project.Risk;
+            ProjectLeader = project.ProjectLeader;
+            StartDate = project.StartDate;
+            CurrentHours = project.CurrentHours;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public Employee ProjectLeader { get; set; }
@@ -19,5 +38,11 @@ namespace ProjectManager.Bll.Models
         public int CurrentHours { get; set; }
         public List<DboSkill> Skills { get; set; }
         public List<EmployeeForWeeks> EmployeesForWeeks { get; set; }
+
+        public static explicit operator DboProject(Project project)
+        {
+            DboProject dboProject = new DboProject(project);
+            return dboProject;
+        }
     }
 }

@@ -1,0 +1,43 @@
+<div id="skill-wrapper" class="row white-card-design skill-wrapper">
+  <div class="row form-row" style="display: flex; align-items: center;">
+    <div class="col-lg-4">
+      <h1>Skills</h1>
+    </div>
+    <div class="col-lg-8" style="display: flex; justify-content: flex-end; padding-right: 30px;">
+      <input type="text" (input)="search($event)" placeholder="Search..." class="form-control" style="width: 200px"/>
+    </div>
+  </div>
+  
+  <p *ngIf="!skills"><em style="margin-left: 25px;">Loading...</em></p>
+
+  <div id="accordion" *ngFor="let item of skills">
+    <div class="card">
+      <div class="card-header" id="Heading{{item.id}}">
+        <h5 class="mb-0" id="{{item.id}}">
+          <h3 id="collapse-button" [ngClass]="['closed-button','btn', 'btn-link']" #name (blur)="item.name=name.innerText" title="{{item.id}}" style="margin-top: 0; border-radius: 3px;">
+            {{item.name}}
+          </h3>
+          <button id="{{item.id}}" name="delete-button"
+                  [ngClass]="['delete-button', 'pull-right', 'btn', 'btn-link']"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="right"
+                  (click) ="setSkillToDelete($event)"
+                  (confirm)="deleteCard()">
+            <i id="{{item.id}}" class='glyphicon glyphicon-trash'></i>
+          </button>
+          <button id="edit-button" [ngClass]="['visible','edit-button', 'pull-right', 'btn', 'btn-link']" (click)="editSkill($event)" title="{{item.id}}">
+            <i class='glyphicon glyphicon-pencil'></i>
+          </button>
+          <button id="cancel-button" (click)="discardChanges($event)" [ngClass]="['not-visible','cancel-button', 'pull-right', 'btn', 'btn-link']" title="{{item.id}}">
+            <i class='glyphicon glyphicon-remove'></i>
+          </button>
+          <button id="ok-button" (click)="saveChanges($event)" [ngClass]="['not-visible','ok-button', 'pull-right', 'btn', 'btn-link']" title="{{item.id}}">
+            <i class='glyphicon glyphicon-ok'></i>
+          </button>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   margin-top: 25px;
   margin-right: 10px;
   padding: 15px 0;
-  width: 75%;
+  width: 60%;
   margin-bottom: 25px;
 }
 
@@ -15,9 +15,9 @@
   margin-right: 15px;
 }
 
-  .card-header button {
-    border-radius: 3px;
-  }
+.card-header button {
+  border-radius: 3px;
+}
 
 .card-body h4:first-child,
 .card-body h5:first-child {
@@ -26,11 +26,16 @@
 
 .card-body h4 {
   font-weight: bolder;
-  margin-left: 10px;
+  padding-left: 10px;
+  border: 1px solid transparent;
+  padding-right: 10px;
+  margin-bottom: 0;
 }
 
 .card-body h4,
 .card-body h5 {
+  margin-bottom: 2px;
+  line-height: 30px;
   display: inline-block;
 }
 
@@ -42,7 +47,7 @@
 }
 
 .card-body-grey {
-  background-color: #eee;
+  background: linear-gradient(to right, rgba(238, 238, 238, 0.9), rgba(238, 238, 238, 0.5));
 }
 
 .card-header .glyphicon {

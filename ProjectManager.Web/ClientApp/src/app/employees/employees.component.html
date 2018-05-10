@@ -1,21 +1,30 @@
+<app-new-employee></app-new-employee>
 <div id="employee-wrapper" class="row white-card-design employee-wrapper">
-  <h1>Employees</h1>
-  <p *ngIf="!employeeService.employees"><em style="margin-left: 25px;">Loading...</em></p>
+  <div class="row form-row" style="display: flex; align-items: center;">
+    <div class="col-lg-4">
+      <h1>Employees</h1>
+    </div>
+    <div class="col-lg-8" style="display: flex; justify-content: flex-end; padding-right: 30px;">
+      <input type="text" (input)="search($event)" placeholder="Search..." class="form-control" style="width: 200px" />
+    </div>
+  </div>
 
-  <div id="accordion" *ngFor="let item of employeeService.employees">
+  <p *ngIf="!employeeService.employeesToSearch"><em style="margin-left: 25px;">Loading...</em></p>
+
+  <div id="accordion" *ngFor="let item of employeeService.employeesToSearch">
     <div class="card">
       <div class="card-header" id="Heading{{item.id}}">
         <h5 class="mb-0" id="{{item.id}}">
-          <button id="collapse-button" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
+          <button id="collapse-button" name="{{item.id}}" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
             {{item.name}}<i class='glyphicon glyphicon-menu-down'></i>
           </button>
-          <button id="{{item.id}}"
+          <button id="{{item.id}}" name="delete-button"
                   [ngClass]="['delete-button', 'pull-right', 'btn', 'btn-link']"
                   (click)="setElementToDelete($event)"
                   mwlConfirmationPopover
                   [popoverTitle]="popoverTitle"
                   [popoverMessage]="popoverMessage"
-                  placement="top"
+                  placement="right"
                   (confirm)="deleteCard()">
             <i id="{{item.id}}" class='glyphicon glyphicon-trash'></i>
           </button>
@@ -34,11 +43,40 @@
       <div id="Collapse{{item.id}}" class="collapse" attr.aria-labelledby="Heading{{item.id}}" attr.data-parent="#accordion">
         <div class="card-body card-body-grey" id="{{item.id}}" (click)="setProjectToEdit($event)">
           <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-2">
               <h5>Name: </h5>
             </div>
             <div class="col-sm-6">
               <h4 #name name="input-field" (blur)="item.name=name.innerText">{{item.name}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+              <h5>Email: </h5>
+            </div>
+            <div class="col-sm-6">
+              <h4 #email name="input-field" (blur)="item.email=email.innerText">{{item.email}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+              <h5>Skills: </h5>
+            </div>
+            <div *ngIf="item.skills?.length == 0" id="skills-no-added">
+              <div class="col-sm-6">
+                <h4>There are no skills added.</h4>
+              </div>
+            </div>
+            <div *ngFor="let skill of item.skills; let i = index" id="skill-list">
+              <div *ngIf="i == 0" class="col-sm-6">
+                <h4>{{skill.name}}</h4>
+              </div>
+              <div *ngIf="i > 0" class="col-sm-offset-2 col-sm-6">
+                <h4>{{skill.name}}</h4>
+              </div>
+            </div>
+            <div class="col-sm-6" id="edit-skills" style="display:none;">
+              <ss-multiselect-dropdown id="skills" required [options]="this.skillService.skills" [texts]="skillsText" [settings]="mySettings" (input)="searchInput($event)" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
             </div>
           </div>
         </div>
@@ -46,3 +84,10 @@
     </div>
   </div>
 </div>
+
+<div class="row" style="width: 75%;" id="warning-message">
+  <div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissible]="alert.dismissible" (onClose)="closeAlert()"><b>{{ alert.msg }}</b></alert>
+  </div>
+</div>
+

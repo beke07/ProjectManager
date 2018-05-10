@@ -15,6 +15,7 @@ namespace ProjectManager.Dal
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<ProjectSkills> ProjectSkills { get; set; }
+        public DbSet<EmployeeSkills> EmployeeSkills { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<ProjectSkills>()

@@ -1,0 +1,57 @@
+<div [style.border-bottom-left-radius]="bottomBorderRadius" [style.border-bottom-right-radius]="bottomBorderRadius" class="row white-card-design card-opener-button-row">
+  <div class="card-header">
+    <h5 class="mb-0">
+      <button [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" id="button" data-toggle="collapse" data-target="#CollapseNewEmployee" aria-expanded="true" aria-controls="CollapseNewEmployee">
+        New Employee<i class='glyphicon glyphicon-plus'></i>
+      </button>
+    </h5>
+  </div>
+</div>
+
+<div [style.border-top-left-radius]="bottomBorderRadius" class="row white-card-design new-project-wrapper">
+  <div id="new-employee-accordion">
+    <div class="card">
+      <div id="CollapseNewEmployee" class="collapse" aria-labelledby="HeadingNewEmployee" data-parent="#new-employee-accordion">
+        <div class="card-body new-project-card-body" style="width: 100%;">
+          <div class="new-project-form-wrapper" style="width: 100%;">
+            <form (ngSubmit)="onSubmit()" #newEmployeeForm="ngForm" id="new-employee-form" style="width: 100%; padding-right: 30px">
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-4">
+                  <label for="name">Name</label>
+                </div>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel" placeholder="Write here...">
+                </div>
+              </div>
+
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-4">
+                  <label for="email">Email</label>
+                </div>
+                <div class="col-sm-8">
+                  <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel" placeholder="Write here...">
+                </div>
+              </div>
+
+              <div class="row form-row row-eq-height">
+                <div class="col-sm-4">
+                  <label for="skills">Skills</label>
+                </div>
+                <div class="col-sm-8">
+                  <ss-multiselect-dropdown id="skills" required [options]="this.skillService.skills" [texts]="skillsText"  (input)="searchInput($event)" [settings]="mySettings" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true, updateOn: 'blur'}"></ss-multiselect-dropdown>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="submit-row">
+          <div class="row text-right">
+            <div class="col-sm-12" style="padding-right: 30px;">
+              <input type="submit" value="Create Employee" form="new-employee-form" class="btn opened-button" [disabled]="!newEmployeeForm.form.valid" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

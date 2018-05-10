@@ -8,7 +8,11 @@ html, body {
 
 body {
   font-family: 'Raleway', sans-serif !important;
-  background-color: #d7cec7 !important;
+  background-image: url("assets/images/Backgorund.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .no-padding{
@@ -27,12 +31,26 @@ h1 {
   margin-top: 10px !important;
 }
 
+.col-sm-8{
+  display: flex;
+  justify-content: flex-end;
+}
+
+input.form-control {
+  width: 300px;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.5));
+}
+
 .white-card-design {
-  background-color: white;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.5));
   border-radius: 3px;
   -webkit-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
   -moz-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
   box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+}
+
+input{
+  outline: 0 !important;
 }
 
 .closed-button:focus,
@@ -46,22 +64,22 @@ h1 {
 }
 
 .closed-button:hover {
-  background-color: #eee !important;
+  background: linear-gradient(to right, rgba(238,238,238,0.9), rgba(238,238,238,0.5)) !important;
   text-decoration: none !important;
 }
 
 .opened-button {
-  background-color: #c09f80 !important;
+  background: linear-gradient(to right, rgba(192,159,128,0.9), rgba(192,159,128,0.5)) !important;
   color: white !important;
 }
 
 .opened-button:hover,
 .opened-button:active,
 .opened-button:focus {
-    background-color: #c09f80 !important;
-    color: white !important;
-    outline: 0 !important;
-    text-decoration: none !important;
+  background: linear-gradient(to right, rgba(192,159,128,0.9), rgba(192,159,128,0.5)) !important;
+  color: white !important;
+  outline: 0 !important;
+  text-decoration: none !important;
 }
 
 .opened-button i,
@@ -89,9 +107,27 @@ h1 {
 .edit-button:hover,
 .edit-button:active,
 .edit-button:focus {
-  background-color: #eee !important;
+  background: linear-gradient(to right, rgba(238,238,238,0.9), rgba(238,238,238,0.5)) !important;
   outline: 0 !important;
   text-decoration: none !important;
+}
+
+.popover,
+.popover-header {
+  border: 0 !important;
+  background: linear-gradient(to right, rgba(238,238,238,0.9), rgba(238,238,238,0.5)) !important;
+}
+
+.btn-danger {
+  background: linear-gradient(to left, rgba(217,83,79,0.9), rgba(217,83,79,0.5)) !important;
+}
+
+.btn-success {
+  background: linear-gradient(to right, rgba(92,184,92,0.9), rgba(92,184,92,0.5)) !important;
+}
+
+button {
+  border: 0 !important;
 }
 
 .delete-button:hover i {
@@ -119,10 +155,8 @@ h1 {
 }
 
 [contenteditable="true"]:focus {
-  background-color: #c09f80;
-  border-radius: 3px;
-  color: white;
-  font-weight: lighter;
+  border-radius: 3px !important;
+  border: 1px solid #ccc !important;
 }
 
 [contenteditable="true"]:active,
@@ -133,6 +167,10 @@ h1 {
 
 .bs-datepicker-head, .selected {
   background-color: #c09f80 !important;
+}
+
+.bs-datepicker {
+  opacity: 0.95 !important;
 }
 
 .bs-datepicker-container {
@@ -146,7 +184,7 @@ h1 {
   border-top: 0 !important;
 }
 
-ss-multiselect-dropdown{
+ss-multiselect-dropdown {
   border-left: 0 !important;
 }
 
@@ -156,9 +194,13 @@ ss-multiselect-dropdown .dropdown-item {
   color: #555 !important;
 }
 
+ss-multiselect-dropdown .dropdown-toggle {
+  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
+}
+
 ss-multiselect-dropdown .dropdown-item:hover,
 ss-multiselect-dropdown .dropdown-item:focus,
-ss-multiselect-dropdown .dropdown-item:active{
+ss-multiselect-dropdown .dropdown-item:active {
   text-decoration: none !important;
 }
 
@@ -185,6 +227,7 @@ ss-multiselect-dropdown button:active {
 
 ss-multiselect-dropdown .dropdown-menu {
   width: 300px !important;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
 }
 
 ss-multiselect-dropdown .input-group-append{
@@ -205,4 +248,33 @@ ss-multiselect-dropdown .search-container input {
 
 ss-multiselect-dropdown .search-container input:focus {
   border: 1px solid #555 !important;
+}
+
+.alert-md-color {
+  background-color: #f8d7da;
+  border-color: #e8c9cc;
+  color: #721c24;
+  -webkit-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+  -moz-box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+  box-shadow: 17px 19px 40px -13px rgba(0,0,0,0.56);
+}
+
+ss-multiselect-dropdown .empty {
+  text-align: center !important;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
