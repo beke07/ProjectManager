@@ -7,6 +7,8 @@ export class Employee {
   name: string;
   email: string;
   skills: Skill[];
+  otherThingsToDoForWeeks: number;
+  hoursPerWeek: number;
   employeeSkills: SkillToProjectAndEmployee[];
   projectsForWeeks: ProjectForWeeks[];
 }

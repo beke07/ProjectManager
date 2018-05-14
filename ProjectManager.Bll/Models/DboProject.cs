@@ -33,7 +33,7 @@ namespace ProjectManager.Bll.Models
         public double Risk { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime DueDate { get; set; }
-        public int NumberOfWeeks { get; set; }
+        public double NumberOfWeeks { get; set; }
         public int PlannedHours { get; set; }
         public int CurrentHours { get; set; }
         public List<DboSkill> Skills { get; set; }

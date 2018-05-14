@@ -11,9 +11,10 @@ using System;
 namespace ProjectManager.Dal.Migrations
 {
     [DbContext(typeof(ProjectManagerDBContext))]
-    partial class ProjectManagerDBContextModelSnapshot : ModelSnapshot
+    [Migration("20180514063029_EmlpoyeeForWeeksBack")]
+    partial class EmlpoyeeForWeeksBack
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

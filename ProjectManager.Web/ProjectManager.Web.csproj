@@ -34,6 +34,7 @@
     <None Remove="ClientApp\src\services\skillservices.ts" />
     <None Remove="ClientApp\src\viewmodels\employee.ts" />
     <None Remove="ClientApp\src\viewmodels\employeeforweeks.ts" />
+    <None Remove="ClientApp\src\viewmodels\hourPerWeek.ts" />
     <None Remove="ClientApp\src\viewmodels\project.ts" />
     <None Remove="ClientApp\src\viewmodels\projectforweeks.ts" />
     <None Remove="ClientApp\src\viewmodels\skill.ts" />
@@ -56,6 +57,7 @@
     <TypeScriptCompile Include="ClientApp\src\services\skillservices.ts" />
     <TypeScriptCompile Include="ClientApp\src\viewmodels\employee.ts" />
     <TypeScriptCompile Include="ClientApp\src\viewmodels\employeeforweeks.ts" />
+    <TypeScriptCompile Include="ClientApp\src\viewmodels\hourPerWeek.ts" />
     <TypeScriptCompile Include="ClientApp\src\viewmodels\project.ts" />
     <TypeScriptCompile Include="ClientApp\src\viewmodels\projectforweeks.ts" />
     <TypeScriptCompile Include="ClientApp\src\viewmodels\skill.ts" />

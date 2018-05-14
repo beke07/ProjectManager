@@ -25,8 +25,7 @@ export class EmployeeServices {
 
   createEmployee(employee: Employee): void {
     this.http.post<Employee>(getBaseUrl() + 'api/Employee/CreateNewEmployee', employee).subscribe(result => {
-      this.employees.push(result);
-      this.employeesToSearch.push(result);
+      this.employeesToSearch.push(result as Employee);
     }, error => console.error(error));
   }
 

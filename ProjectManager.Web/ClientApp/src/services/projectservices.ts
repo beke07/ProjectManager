@@ -28,8 +28,7 @@ export class ProjectServices {
 
   createNewProject(project: Project): void {
     this.http.post<Project>(getBaseUrl() + 'api/Project/CreateNewProject', project).subscribe(result => {
-      this.projects.push(result);
-      this.projectsToSearch.push(result);
+      this.projectsToSearch.push(result as Project);
     }, error => console.error(error));
   }
 

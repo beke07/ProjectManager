@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { AlertModule  } from 'ngx-bootstrap';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { DragulaModule } from 'ng2-dragula';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -41,6 +42,7 @@ import { SkillsComponent } from './skills/skills.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    DragulaModule,
     MultiselectDropdownModule,
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),

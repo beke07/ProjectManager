@@ -1,0 +1,180 @@
+<style>
+  table * {
+    border: 1px solid dimgray;
+  }
+</style>
+
+<div class="row">
+  <div class="col-sm-8 text-left">
+    <div id="project-wrapper" class="white-card-design project-wrapper" style="margin-top: 25px; width:100%;">
+      <div class="row form-row" style="display: flex; align-items: center;">
+        <div class="col-lg-4">
+          <h1>Projects</h1>
+        </div>
+        <div class="col-lg-8" style="display: flex; justify-content: flex-end; padding-right: 30px;">
+          <input type="text" (input)="search($event)" placeholder="Search..." class="form-control" style="width: 200px" />
+        </div>
+      </div>
+
+      <div id="accordion" *ngFor="let item of projectService.projectsToSearch">
+        <div class="card">
+          <div class="card-header" id="Heading{{item.id}}">
+            <h5 class="mb-0" id="{{item.id}}">
+              <button id="collapse-button" name="{{item.id}}" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
+                {{item.name}}<i class='glyphicon glyphicon-menu-down'></i>
+              </button>
+            </h5>
+          </div>
+
+          <div id="Collapse{{item.id}}" class="collapse" attr.aria-labelledby="Heading{{item.id}}" attr.data-parent="#accordion">
+            <div class="card-body card-body-grey" id="{{item.id}}" style="padding-right: 30px;">
+              <div class="row table-responsive">
+                <table class="table wrapper weekTable">
+                  <tbody class="tbodies">
+                    <tr>
+                      <td></td>
+                      <td [dragula]='"first-bag"'
+                          [dragulaOptions]="options"
+                          class="container not-draggable"
+                          *ngFor='let week of item.weeks'
+                          [innerHtml]='week'></td>
+                    </tr>
+                    <tr>
+                      <td>10%</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>20%</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>30%</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>40%</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <h5>Name: </h5>
+                </div>
+                <div class="col-sm-6">
+                  <h4 #name name="input-field" (blur)="item.name=name.innerText">{{item.name}}</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h5>Weeks: </h5>
+                </div>
+                <div class="col-sm-6">
+                  <h4 #numberOfWeeks name="input-field" (blur)="item.numberOfWeeks=numberOfWeeks.innerText">{{item.numberOfWeeks}}</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h5>Start: </h5>
+                </div>
+                <div class="col-sm-6">
+                  <h4 #startDate name="input-field" (blur)="item.startDate=startDate.innerText">{{item.startDate | date: 'yyyy.MM.dd'}}</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h5>End: </h5>
+                </div>
+                <div class="col-sm-6">
+                  <h4 #dueDate name="input-field" (blur)="item.dueDate=dueDate.innerText">{{item.dueDate | date: 'yyyy.MM.dd'}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-4">
+    <div id="employee-wrapper" class="white-card-design employee-wrapper"
+         style="width: 100%; margin-top: 25px;">
+
+      <div id="accordion-employee" *ngFor="let item of employeesForWork">
+        <div class="card" [dragula]='"first-bag"' [dragulaOptions]="options">
+          <div class="card-header" id="Heading{{item.id}}">
+            <h5 class="mb-0" id="{{item.id}}">
+              <button id="collapse-employee-button" name="{{item.id}}" [ngClass]="['closed-button','btn', 'btn-link']" (click)="openEmployeeCard($event)" aria-expanded="false" data-toggle="collapse" attr.data-target="#Collapse{{item.id}}" attr.aria-controls="Collapse{{item.id}}">
+                {{item.name}}
+              </button>
+            </h5>
+          </div>
+
+          <div id="Collapse{{item.id}}" class="collapse" attr.aria-labelledby="Heading{{item.id}}" attr.data-parent="#accordion-employee">
+            <div class="card-body card-body-grey" id="{{item.id}}">
+              <div class="row table-responsive">
+                <table>
+                  <tr>
+                    <td></td>
+                    <td>1.</td>
+                    <td>2.</td>
+                    <td>3.</td>
+                    <td>4.</td>
+                    <td>5.</td>
+                  </tr>
+                  <tr>
+                    <td>10%</td>
+                    <td style="background-color:green;"></td>
+                    <td style="background-color:green;"></td>
+                    <td></td>
+                    <td style="background-color:green;"></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ export class Project {
   plannedHours: number;
   currentHours: number;
   skills: Skill[];
+  weeks: string[];
   projectSkills: SkillToProjectAndEmployee[];
   employeesForWeeks: EmployeeForWeeks[];
 }
