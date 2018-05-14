@@ -17,7 +17,7 @@ namespace ProjectManager.Bll.Models
             Name = project.Name;
             Company = project.Company;
             DueDate = project.DueDate;
-            EmployeesForWeeks = project.EmployeesForWeeks;
+            EmployeeProjectHourPerWeeks = project.EmployeeProjectHourPerWeeks;
             NumberOfWeeks = project.NumberOfWeeks;
             PlannedHours = project.PlannedHours;
             Risk = project.Risk;
@@ -37,7 +37,7 @@ namespace ProjectManager.Bll.Models
         public int PlannedHours { get; set; }
         public int CurrentHours { get; set; }
         public List<DboSkill> Skills { get; set; }
-        public List<EmployeeForWeeks> EmployeesForWeeks { get; set; }
+        public List<EmployeeProjectHourPerWeeks> EmployeeProjectHourPerWeeks { get; set; }
 
         public static explicit operator DboProject(Project project)
         {

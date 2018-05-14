@@ -1,6 +1,6 @@
 import { Skill } from "./skill";
-import { ProjectForWeeks } from "./projectforweeks";
 import { SkillToProjectAndEmployee } from "./skillToProjectAndEmployee";
+import { EmployeeProjectHourPerWeeks } from "./employeeProjectHourPerWeeks";
 
 export class Employee {
   id: number;
@@ -10,7 +10,7 @@ export class Employee {
   otherThingsToDoForWeeks: number;
   hoursPerWeek: number;
   employeeSkills: SkillToProjectAndEmployee[];
-  projectsForWeeks: ProjectForWeeks[];
+  employeeProjectHourPerWeeks: EmployeeProjectHourPerWeeks[];
 }
 
 Employee.prototype.toString = function employeeToString () {

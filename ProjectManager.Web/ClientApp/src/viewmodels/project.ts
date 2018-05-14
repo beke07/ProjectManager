@@ -1,7 +1,7 @@
-import { EmployeeForWeeks } from "./employeeforweeks";
 import { Skill } from "./skill";
 import { Employee } from "./employee";
 import { SkillToProjectAndEmployee } from "./skillToProjectAndEmployee";
+import { EmployeeProjectHourPerWeeks } from "./employeeProjectHourPerWeeks";
 
 export class Project {
   id: number;
@@ -17,5 +17,5 @@ export class Project {
   skills: Skill[];
   weeks: string[];
   projectSkills: SkillToProjectAndEmployee[];
-  employeesForWeeks: EmployeeForWeeks[];
+  employeeProjectHourPerWeeks: EmployeeProjectHourPerWeeks[];
 }

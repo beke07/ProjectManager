@@ -8,6 +8,9 @@ import { Skill } from "../viewmodels/skill";
 import { SkillToProjectAndEmployee } from "../viewmodels/skillToProjectAndEmployee";
 import { Employee } from "../viewmodels/employee";
 import { EmployeeServices } from "./employeeservices";
+import { HourPerWeek } from "../viewmodels/hourPerWeek";
+import { ProjectIDEmployee } from "../viewmodels/projectIDEmployee";
+import { EmployeeProjectHourPerWeeks } from "../viewmodels/employeeProjectHourPerWeeks";
 
 @Injectable()
 export class ProjectServices {
@@ -19,6 +22,24 @@ export class ProjectServices {
     this.getProjects().subscribe(result => {
       this.projects = result as Project[];
       this.projectsToSearch = result as Project[];
+    });
+  }
+
+  addEmployeeToProject(employeeid, projectid) {
+
+    let projectIDEmployee = new ProjectIDEmployee();
+    projectIDEmployee.employeeId = employeeid;
+    projectIDEmployee.projectId = projectid;
+
+    this.http.put<ProjectIDEmployee>(getBaseUrl() + 'api/Project/AddEmployeeToProject', projectIDEmployee).subscribe(result => {
+      console.log(result as ProjectIDEmployee);
+    });
+  }
+
+  getEmployeesForWeeks(projectId): void {
+    let params = new HttpParams().set('projectId', projectId);
+    this.http.get<EmployeeProjectHourPerWeeks[]>(getBaseUrl() + 'api/Project/GetEmployeesForWeeks', { params: params }).subscribe(result => {
+      console.log(result as EmployeeProjectHourPerWeeks[]);
     });
   }
 
@@ -56,6 +77,11 @@ export class ProjectServices {
     }, error => console.error(error));
   }
 
+  GetEmployeesHoursPerWeek(employeeid, projectid): Observable<HourPerWeek[]>{
+    let params = new HttpParams().set('employeeId', employeeid).set('projectId', projectid);
+    return this.http.get<HourPerWeek[]>(getBaseUrl() + 'api/Project/GetEmployeesHoursPerWeek', { params: params });
+  }
+
   findProjectById(projectId: string): any{
     for (let i in this.projects) {
       if (this.projects[i].id === Number(projectId)) {
@@ -79,7 +105,7 @@ export class ProjectServices {
         this.projects[i].company = project.company;
         this.projects[i].currentHours = project.currentHours;
         this.projects[i].dueDate = project.dueDate;
-        this.projects[i].employeesForWeeks = project.employeesForWeeks;
+        this.projects[i].employeeProjectHourPerWeeks = project.employeeProjectHourPerWeeks;
         this.projects[i].numberOfWeeks = project.numberOfWeeks;
         this.projects[i].plannedHours = project.plannedHours;
         this.projects[i].projectLeader = project.projectLeader;

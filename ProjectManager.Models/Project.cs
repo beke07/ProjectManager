@@ -19,6 +19,6 @@ namespace ProjectManager.Models
         public int PlannedHours { get; set; }
         public int CurrentHours { get; set; }
         public List<ProjectSkills> ProjectSkills { get; set; }
-        public List<EmployeeForWeeks> EmployeesForWeeks { get; set; }
+        public List<EmployeeProjectHourPerWeeks> EmployeeProjectHourPerWeeks { get; set; }
     }
 }

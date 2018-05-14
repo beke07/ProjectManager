@@ -16,13 +16,17 @@ namespace ProjectManager.Bll.Models
             Id = employee.Id;
             Name = employee.Name;
             Email = employee.Email;
+            HoursPerWeek = employee.HoursPerWeek;
+            OtherThingsToDoForWeeks = employee.OtherThingsToDoForWeeks;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public List<DboSkill> Skills { get; set; }
-        public List<ProjectForWeeks> ProjectsForWeeks { get; set; }
+        public int HoursPerWeek { get; set; }
+        public int OtherThingsToDoForWeeks { get; set; }
+        public List<EmployeeProjectHourPerWeeks> EmployeeProjectHourPerWeeks { get; set; }
 
         public static explicit operator DboEmployee(Employee employee)
         {

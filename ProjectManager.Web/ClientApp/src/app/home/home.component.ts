@@ -4,6 +4,7 @@ import { Project } from '../../viewmodels/project';
 import { EmployeeServices } from '../../services/employeeservices';
 import { ProjectServices } from '../../services/projectservices';
 import { DragulaService } from 'ng2-dragula';
+import { HourPerWeek } from '../../viewmodels/hourPerWeek';
 
 @Component({
   selector: 'app-home',
@@ -79,6 +80,7 @@ export class HomeComponent {
   private onDrop(args) {
     let [el, target, source] = args;
 
+    let targetElement = <HTMLElement>target;
     let targetParent = (<HTMLElement>target).parentElement;
     let sourceParent = (<HTMLElement>source).parentElement;
 
@@ -87,34 +89,108 @@ export class HomeComponent {
       let targetElement = <HTMLElement>target;
       element.style.display = "none";
       targetElement.style.backgroundColor = "green";
+
+      let employeeId = (<HTMLElement>el).firstElementChild.id;
+      let projectId = targetElement.id;
+
+      this.projectService.addEmployeeToProject(employeeId, projectId);
     }
     else {
       return false;
     }
   }
 
+  clearCard(table) {
+    while (table.firstChild) {
+      table.removeChild(table.firstChild);
+    }
+
+    let thead = document.createElement("thead");
+    let tr = document.createElement("tr");
+    let td = document.createElement("td");
+    tr.appendChild(td);
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    let newtbody = document.createElement("tbody");
+    table.appendChild(newtbody);
+  }
+
   openEmployeeCard(event: any) {
     var target = <HTMLElement>event.target;
 
+    let employeeId = target.getAttribute("name");
+    let employee = this.employeeService.findEmployeeById(Number(employeeId)) as Employee;
+
+    let table = <HTMLTableElement>document.getElementById("table" + employeeId);
+    let theadTr = <HTMLTableRowElement>table.getElementsByTagName("thead")[0].firstElementChild;
+    let tbody = <HTMLTableSectionElement>table.getElementsByTagName("tbody")[0];
+    let td = document.createElement("td");
+        td.style.border = "1px solid dimgray";
+        td.style.textAlign = "center"
+        td.style.width = "40px";
+        td.style.height = "40px";
+
     if (target.classList.contains("closed-button")) {
 
-      let employeeId = target.getAttribute("name");
-      let employee = this.employeeService.findEmployeeById(Number(employeeId)) as Employee;
+      this.projectService.GetEmployeesHoursPerWeek(employee.id, this.actualProject.id).subscribe(result => {
 
-      //this.employeeService.projectsInThisTime(employee.id, this.actualProject.id);
+        console.log(result);
 
-      //for (let i = 0; i < this.actualProject.numberOfWeeks; i++) {
-      //  let week;
-      //  week = employee.hoursPerWeek - employee.otherThingsToDoForWeeks;
-      //}
+        for (let i = 0; i < result.length; i++) {
+          let headtd = <HTMLTableCellElement>td.cloneNode(true);
+          headtd.innerHTML = ((i + 1) + ".");
+          theadTr.appendChild(headtd);
 
-      //console.log(this.actualProject);
-      //console.log(employee);
+          if (i == 0) {
+            for (let j = 0; j < 10; j++) {
+              let tr = document.createElement("tr");
+              let bodyfirsttd = <HTMLTableCellElement>td.cloneNode(true);
+              bodyfirsttd.innerHTML = ((j + 1) * 10 + "%");
+              tr.appendChild(bodyfirsttd);
+              tbody.appendChild(tr);
+            }
+          }
+
+          let hourInThisWeekInPercent = (result[i].hour / employee.hoursPerWeek) * 10;
+          let hourInThisWeekInPercentFloor = Math.floor(hourInThisWeekInPercent);
+          let theRest = hourInThisWeekInPercent - hourInThisWeekInPercentFloor;
+          let bodyTrs = <NodeListOf<HTMLTableRowElement>>tbody.getElementsByTagName("tr");
+
+          for (let j = 0; j < hourInThisWeekInPercentFloor; j++) {
+              let bodytd = <HTMLTableCellElement>td.cloneNode(true);
+              bodytd.style.backgroundColor = "green";
+
+              if (theRest == 0 && j == hourInThisWeekInPercentFloor - 1) {
+                bodytd.innerHTML = String(result[i].hour);
+              }
+
+              bodyTrs[j].appendChild(bodytd);
+              
+          }
+
+          if (theRest != 0) {
+            let percentTd = <HTMLTableCellElement>bodyTrs[hourInThisWeekInPercentFloor].firstElementChild;
+            percentTd.style.height = (40 * (1 - theRest)) + "px";
+            percentTd.innerHTML = (hourInThisWeekInPercent * 10) + "%";
+
+            let restTd = <HTMLTableCellElement>td.cloneNode(true);
+            restTd.style.backgroundColor = "green";
+            restTd.style.height = (40 * (theRest)) + "px";
+            restTd.innerHTML = String(result[i].hour);
+            bodyTrs[hourInThisWeekInPercentFloor].appendChild(restTd);
+          }
+        }
+        table.style.width = (result.length * 40) + "px";
+      });
 
       target.classList.remove("closed-button");
       target.classList.add("opened-button");
     }
     else {
+
+      this.clearCard(table);
+
       target.classList.remove("opened-button");
       target.classList.add("closed-button");
     }
@@ -144,6 +220,8 @@ export class HomeComponent {
 
       let projectId = (<HTMLButtonElement>target).getAttribute("name");
       this.searchForEmployees(projectId);
+
+      this.projectService.getEmployeesForWeeks(projectId);
 
       target.classList.remove("closed-button");
       target.classList.add("opened-button");
@@ -198,8 +276,6 @@ export class HomeComponent {
       nameofeditCollapseButton = editCollapseButton.getAttribute("name");
       collapseButtons = <NodeListOf<HTMLElement>>projectWrapper.querySelectorAll("#collapse-employee-button");
     }
-
-    let clicked = false;
 
     for (let i = 0; i < collapseButtons.length; i++) {
       if (collapseButtons[i].getAttribute("name") !== nameofeditCollapseButton) {

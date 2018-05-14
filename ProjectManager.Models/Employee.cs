@@ -17,6 +17,6 @@ namespace ProjectManager.Models
         //Hány óra olyan dolga van ami nem a projektkhez kapcsolódik
         public int OtherThingsToDoForWeeks { get; set; }
         public List<EmployeeSkills> EmployeeSkills { get; set; }
-        public List<ProjectForWeeks> ProjectsForWeeks { get; set; }
+        public List<EmployeeProjectHourPerWeeks> EmployeeProjectHourPerWeeks { get; set; }
     }
 }

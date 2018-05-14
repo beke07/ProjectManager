@@ -57,25 +57,25 @@ namespace ProjectManager.Bll.Services
                     {
                         Name = "Tóth Tibor",
                         Email = "toth.tibor@aut.bme.hu",
-                        ProjectsForWeeks = new List<ProjectForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     },
                     new Employee
                     {
                         Name = "Ferenczi Judit",
                         Email = "ferenczi.judit@aut.bme.hu",
-                        ProjectsForWeeks = new List<ProjectForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     },
                     new Employee
                     {
                         Name = "Ambrus Attila",
                         Email = "ambrus.attila@aut.bme.hu",
-                        ProjectsForWeeks = new List<ProjectForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     },
                     new Employee
                     {
                         Name = "Kellner Menyhárt",
                         Email = "kellner.menyhart@aut.bme.hu",
-                        ProjectsForWeeks = new List<ProjectForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     }
                 };
                 context.AddRange(emloyees);
@@ -95,7 +95,7 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        EmployeesForWeeks = new List<EmployeeForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     },
                     new Project
                     {
@@ -107,7 +107,7 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        EmployeesForWeeks = new List<EmployeeForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     },
                     new Project
                     {
@@ -119,7 +119,7 @@ namespace ProjectManager.Bll.Services
                         CurrentHours = 0,
                         ProjectLeader = new Employee(),
                         PlannedHours = 200,
-                        EmployeesForWeeks = new List<EmployeeForWeeks>()
+                        EmployeeProjectHourPerWeeks = new List<EmployeeProjectHourPerWeeks>()
                     }
                 };
                 context.AddRange(projects);

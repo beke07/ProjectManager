@@ -32,64 +32,12 @@
                 <table class="table wrapper weekTable">
                   <tbody class="tbodies">
                     <tr>
-                      <td></td>
-                      <td [dragula]='"first-bag"'
+                      <td id="{{item.id}}"
+                          [dragula]='"first-bag"'
                           [dragulaOptions]="options"
                           class="container not-draggable"
                           *ngFor='let week of item.weeks'
                           [innerHtml]='week'></td>
-                    </tr>
-                    <tr>
-                      <td>10%</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>20%</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>30%</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>40%</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
                     </tr>
                   </tbody>
                 </table>
@@ -151,24 +99,22 @@
           <div id="Collapse{{item.id}}" class="collapse" attr.aria-labelledby="Heading{{item.id}}" attr.data-parent="#accordion-employee">
             <div class="card-body card-body-grey" id="{{item.id}}">
               <div class="row table-responsive">
-                <table>
-                  <tr>
-                    <td></td>
-                    <td>1.</td>
-                    <td>2.</td>
-                    <td>3.</td>
-                    <td>4.</td>
-                    <td>5.</td>
-                  </tr>
-                  <tr>
-                    <td>10%</td>
-                    <td style="background-color:green;"></td>
-                    <td style="background-color:green;"></td>
-                    <td></td>
-                    <td style="background-color:green;"></td>
-                    <td></td>
-                  </tr>
+                <table id="table{{item.id}}">
+                  <thead>
+                    <tr>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
                 </table>
+              </div>
+              <div class="row" style="margin-top: 15px">
+                <div class="col-sm-7">
+                  <h5>Maximum Hours/Week </h5>
+                </div>
+                <div class="col-sm-5">
+                  <h4>{{item.hoursPerWeek}} hour</h4>
+                </div>
               </div>
             </div>
           </div>

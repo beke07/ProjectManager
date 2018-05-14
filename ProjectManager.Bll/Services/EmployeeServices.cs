@@ -66,6 +66,22 @@ namespace ProjectManager.Bll.Services
             try
             {
                 Employee employeeTodelete = FindEmployeeById(employeeId);
+                List<EmployeeProjectHourPerWeeks> employeeProjectHourPerWeeks = context.EmployeeProjectHourPerWeeks.Include(e => e.HoursPerWeeks).Where(e => e.Employee.Id == employeeTodelete.Id).ToList();
+
+                foreach (var item in employeeProjectHourPerWeeks)
+                {
+
+                    foreach (var hour in item.HoursPerWeeks)
+                    {
+                        hour.Hour = 0;
+                    }
+                    item.HoursPerWeeks.Clear();
+                }
+                context.SaveChanges();
+
+                context.HourPerWeek.RemoveRange(context.HourPerWeek.Where(h => h.Hour == 0).ToList());
+                context.EmployeeProjectHourPerWeeks.RemoveRange(employeeProjectHourPerWeeks);
+
                 context.Employees.Remove(employeeTodelete);
                 context.SaveChanges();
                 return true;
@@ -87,7 +103,7 @@ namespace ProjectManager.Bll.Services
             Employee employeeToEdit = FindEmployeeById(employee.Id);
             employeeToEdit.Name = employee.Name;
             employeeToEdit.Email = employee.Email;
-            employeeToEdit.ProjectsForWeeks = employee.ProjectsForWeeks;
+            employeeToEdit.EmployeeProjectHourPerWeeks = employee.EmployeeProjectHourPerWeeks;
             employeeToEdit.EmployeeSkills = employee.EmployeeSkills;
             context.SaveChanges();
 

@@ -44,5 +44,23 @@ namespace ProjectManager.Web.Controllers
         {
             return projectServices.EditProject(project);
         }
+
+        [HttpGet("[action]")]
+        public IEnumerable<HourPerWeek> GetEmployeesHoursPerWeek(int employeeId, int projectId)
+        {
+            return projectServices.GetEmployeesHoursPerWeek(employeeId, projectId);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<HourPerWeek> GetEmployeesForWeeks(int projectId)
+        {
+            return projectServices.GetEmployeesForWeeks(projectId);
+        }
+
+        [HttpPut("[action]")]
+        public ProjectIDEmployee AddEmployeeToProject([FromBody]ProjectIDEmployee projectIDEmployee)
+        {
+            return projectServices.AddEmployeeToProject(projectIDEmployee);
+        }
     }
 }
